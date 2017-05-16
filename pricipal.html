@@ -56,9 +56,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Etakedex</a></li>
-                <li><a href="#">Ranking</a></li>
+                <li class="active"><a href="pricipal.html">Home</a></li>
+                <li><a href="etakedex.html">Eetakedex</a></li>
+                <li><a href="ranking.html">Ranking</a></li>
                 <li><a href="#">FAQs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -68,6 +68,40 @@
     </div>
 </nav>
 
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("button").click(function () {
+            $(".container").hide();
+            var gestEetakemon_URL = "/eetakemon/all";
+            $.getJSON(gestEetakemon_URL, function (data) {
+                $("#tabla").html('');
+                if (data != null && $.isArray(data)) {
+                    $.each(data, function (index, value) {
+                        $("#tabla").append("<tr><<td>" + value.name + "</td><td>" + value.type + "</td></tr>" + value.level + "</td><td>");
+                    });
+                }
+                else alert("Todavía no tienes ningún Etakemon!");
+                $(".container").fadeIn("slow");
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
@@ -76,8 +110,7 @@
             <p><a href="#">Cambiar foto de perfil</a></p>
             <h5>Username</h5>
             <h5>Nivel</h5>
-            <h5>NºEtakemons</h5>
-            <h5>Posición en el ranking</h5>
+            <h5>NºEetakemons</h5>
         </div>
 
 
@@ -103,31 +136,39 @@
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                 ut aliquip ex ea commodo consequat.</p>
             <hr>
-            <h3>Tus Etakemons</h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Etakemon</th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Nivel</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Foto1</td>
-                    <td>Charmander</td>
-                    <td>TSC</td>
-                    <td>15</td>
-                </tr>
-                <tr>
-                    <td>Foto2</td>
-                    <td>Pikachu</td>
-                    <td>ENTEL</td>
-                    <td>25</td>
-                </tr>
-                </tbody>
-            </table>
+            <h3>Tus Eetakemons</h3>
+
+
+
+
+
+
+
+
+            <div class="container" style="display: none">
+                <h2>Lista de todos los Eetakemons:</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Nivel</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tabla">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
         </div>
     </div>
 </div>

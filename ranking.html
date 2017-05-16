@@ -43,6 +43,40 @@
         }
     </style>
 </head>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("button").click(function () {
+            $(".container").hide();
+            var gestEetakemon_URL = "/eetakemon/all";
+            $.getJSON(gestEetakemon_URL, function (data) {
+                $("#tabla").html('');
+                if (data != null && $.isArray(data)) {
+                    $.each(data, function (index, value) {
+                        $("#tabla").append("<tr><<td>" + value.username + "</td><td>" + value.level + "</td></tr>" + value.points + "</td><td>");
+                    });
+                }
+                else alert("Todavía no hay usuarios!");
+                $(".container").fadeIn("slow");
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
 <body>
 
 <nav class="navbar navbar-inverse">
@@ -55,9 +89,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Etakedex</a></li>
-                <li><a href="#">Ranking</a></li>
+                <li class="active"><a href="pricipal.html">Home</a></li>
+                <li><a href="etakedex.html">Eetakedex</a></li>
+                <li><a href="ranking.html">Ranking</a></li>
                 <li><a href="#">FAQs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -75,40 +109,39 @@
             <p><a href="#">Cambiar foto de perfil</a></p>
             <h5>Username</h5>
             <h5>Nivel</h5>
-            <h5>NºEtakemons</h5>
-            <h5>Posición en el ranking</h5>
+            <h5>NºEetakemons</h5>
         </div>
         <div class="col-sm-8 text-left">
             <h1>Ranking</h1>
-            <p>Capturar Etakemons te hará conseguir puntos. ¿Podrás estar en lo más alto?</p>
+            <p>Capturar Eetakemons te hará conseguir puntos. ¿Podrás estar en lo más alto?</p>
             <hr>
             <h3>Jugadores</h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Nivel</th>
-                    <th>Puntos</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="warning">
-                    <td>Eric</td>
-                    <td>20</td>
-                    <td>20000</td>
-                </tr>
-                <tr class="active">
-                    <td>Carlos</td>
-                    <td>17</td>
-                    <td>17000</td>
-                </tr>
-                <tr class="danger">
-                    <td>Xavi</td>
-                    <td>15</td>
-                    <td>15000</td>
-                </tr>
-                </tbody>
-            </table>
+
+
+
+
+
+            <div class="container" style="display: none">
+                <h2>Lista de todos los Eetakemons:</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Uusario</th>
+                            <th>Nivel</th>
+                            <th>Puntos</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tabla">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+
         </div>
         <div class="col-sm-2 sidenav">
         </div>
